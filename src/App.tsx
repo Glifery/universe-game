@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {PureComponent} from 'react';
 import './App.css';
+import Generator from "./application/universe-generator/Generator";
+import {Box, Button, Card, CardActions, CardContent, Container, Typography} from "@mui/material";
+import SelectedDomain from "./ui/SelectedDomain";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends PureComponent {
+    generator: Generator;
+
+    constructor(props: any) {
+        super(props);
+        this.generator = new Generator();
+    };
+
+    render() {
+        return (
+            <Container maxWidth="sm">
+                <SelectedDomain stars={this.generator.getStars()} />
+            </Container>
+        );
+    }
 }
 
 export default App;
