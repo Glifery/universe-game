@@ -6,6 +6,8 @@ import DetailPageSentinel from "./univerce/DetailPageSentinel";
 import Planet from "../domain/universe/object/Planet";
 import DetailPagePlanet from "./univerce/DetailPagePlanet";
 import DetailPageStar from "./univerce/DetailPageStar";
+import ListBlock from "./widget/ListBlock";
+import ListItem from "./widget/ListItem";
 
 type Props = {
     stars: Star[]
@@ -70,12 +72,16 @@ class SelectedDomain extends Component<Props, State> {
             );
         }
 
-        const { stars } = this.props;
-
-        return <DetailPageSentinel
-            focus={this.focus}
-            sentinel={stars[0].getPlanets()[0].getSentinels()[0]}
-        />
+        return <ListBlock data={{foo: 'bar'}}>
+            <ListItem key={0} sentinel={this.props.stars[0].getPlanets()[0].getSentinels()[0]}>
+                <DetailPageSentinel
+                    focus={this.focus}
+                    sentinel={this.props.stars[0].getPlanets()[0].getSentinels()[0]}
+                />
+            </ListItem>
+            <ListItem key={1} sentinel={this.props.stars[0].getPlanets()[0].getSentinels()[1]} />
+            <ListItem key={2} sentinel={this.props.stars[0].getPlanets()[0].getSentinels()[2]} />
+        </ListBlock>
     }
 }
 

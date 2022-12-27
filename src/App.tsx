@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import './App.css';
 import Generator from "./application/universe-generator/Generator";
-import {Box, Button, Card, CardActions, CardContent, Container, Typography} from "@mui/material";
+import {Container} from "@mui/material";
 import SelectedDomain from "./ui/SelectedDomain";
 
 class App extends PureComponent {

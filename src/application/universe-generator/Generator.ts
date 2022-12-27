@@ -8,11 +8,16 @@ import RandomNamesGenerator from "../util/RandomNamesGenerator";
 
 class Generator {
     stars: Star[];
+    planets: Planet[];
+    sentinels: Sentinel[];
 
     constructor() {
         const nameGenerator = new RandomNamesGenerator();
 
         this.stars = [];
+        this.planets = [];
+        this.sentinels = [];
+
         for (let i=0; i<=10; i++) {
             let star = new Star(i, nameGenerator.getRandom(), new Coordinate(i*10));
 
@@ -29,9 +34,11 @@ class Generator {
                     sentinel.setOrbit(sentinelOrbit);
 
                     planet.addSentinel(sentinel);
+                    this.sentinels.push(sentinel);
                 }
 
                 star.addPlanet(planet);
+                this.planets.push(planet);
             }
 
             this.stars.push(star);
@@ -40,6 +47,14 @@ class Generator {
 
     getStars(): Star[] {
         return this.stars;
+    }
+
+    getPlanets(): Planet[] {
+        return this.planets;
+    }
+
+    getSentinels(): Sentinel[] {
+        return this.sentinels;
     }
 }
 
