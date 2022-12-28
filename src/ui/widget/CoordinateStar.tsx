@@ -10,10 +10,10 @@ type Props = {
 }
 
 const CoordinateStar: FC<Props> = ({ navigation, star }: Props) =>
-    <Typography color="text.secondary">
+    <>
         (
         <CoordinateItem object={star} navigation={navigation} />
         )
-    </Typography>
+    </>
 
 export default CoordinateStar;

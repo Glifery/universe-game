@@ -10,7 +10,7 @@ type Props = {
 }
 
 const CoordinateSentinel: FC<Props> = ({ navigation, sentinel }: Props) =>
-    <Typography color="text.secondary">
+    <>
         (
         <CoordinateItem object={sentinel.getPlanet().getStar()} navigation={navigation} />
         -
@@ -18,6 +18,6 @@ const CoordinateSentinel: FC<Props> = ({ navigation, sentinel }: Props) =>
         -
         <CoordinateItem object={sentinel} navigation={navigation} />
         )
-    </Typography>
+    </>
 
 export default CoordinateSentinel;

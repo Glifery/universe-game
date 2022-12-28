@@ -10,12 +10,12 @@ type Props = {
 }
 
 const CoordinatePlanet: FC<Props> = ({ navigation, planet }: Props) =>
-    <Typography color="text.secondary">
+    <>
         (
         <CoordinateItem object={planet.getStar()} navigation={navigation} />
         -
         <CoordinateItem object={planet} navigation={navigation} />
         )
-    </Typography>
+    </>
 
 export default CoordinatePlanet;

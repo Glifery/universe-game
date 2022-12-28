@@ -1,4 +1,3 @@
-import FocusedObject from "./types/FocusedObject";
 import React, {Component} from "react";
 import Sentinel from "../domain/universe/object/Sentinel";
 import Star from "../domain/universe/object/Star";
@@ -10,7 +9,6 @@ import ResultSetTable from "./widget/ResultSetTable";
 import ConditionSet from "../application/univerce/condition/ConditionSet";
 import ConditionSourceSentinel from "../application/univerce/condition/source/ConditionSourceSentinel";
 import ConditionExposeSentinel from "../application/univerce/condition/expose/ConditionExposeSentinel";
-import ConditionFilterByStar from "../application/univerce/condition/filter/ConditionFilterByStar";
 import Universe from "../application/univerce/Universe";
 import PanelNavigation from "./types/PanelNavigation";
 import ConditionInterface from "../application/univerce/condition/ConditionInterface";
@@ -34,23 +32,30 @@ class PanelFocused extends Component<Props, State> {
             focused: null,
         };
 
-        this.focus = this.focus.bind(this)
+        this.navigate = this.navigate.bind(this)
         this.navigation = {
-            focus: this.focus.bind(this),
+            navigate: this.navigate.bind(this),
+            navigateOnClick: this.navigateOnLick.bind(this),
             universe: this.props.universe
         }
     }
 
-    focus(focusedObject: ConditionInterface) {
+    navigate(focusedObject: ConditionInterface) {
         this.setState({
             focused: focusedObject,
         })
 
-        console.info("Focused:", focusedObject);
+        console.info("Navigated to:", focusedObject);
     }
 
-    renderConditionObject() {
-        let focusedObject = (this.state.focused as ConditionObject).getObject();
+    navigateOnLick(focusedObject: ConditionInterface) {
+        return () => {
+            this.navigate(focusedObject);
+        }
+    }
+
+    renderConditionObject(conditionObject: ConditionObject) {
+        let focusedObject = conditionObject.getObject();
 
         switch (true) {
             case (focusedObject instanceof Star):
@@ -70,40 +75,28 @@ class PanelFocused extends Component<Props, State> {
         throw new Error("ConditionObject value has unsupported type");
     }
 
+    renderConditionSet(conditionSet: ConditionSet) {
+        return <ResultSetTable resultSet={conditionSet.apply(this.navigation)} />
+    }
+
     render() {
         let focusedObject = this.state.focused;
 
         switch (true) {
             case (focusedObject instanceof ConditionObject):
-                return this.renderConditionObject();
-                // focusedObject = (focusedObject as ConditionObject).getObject();
-                // switch (true) {
-                //     case (focusedObject instanceof Star):
-                //         return (
-                //             <PanelDetailStar focus={this.focus} star={focusedObject as Star}/>
-                //         );
-                //     case (focusedObject instanceof Planet):
-                //         return (
-                //             <PanelDetailPlanet panel={this.panel} focus={this.focus} planet={focusedObject as Planet}/>
-                //         );
-                //     case (focusedObject instanceof Sentinel):
-                //         return (
-                //             <PanelDetailSentinel focus={this.focus} sentinel={focusedObject as Sentinel}/>
-                //         );
-                // }
-                // return "";
+                return this.renderConditionObject(focusedObject as ConditionObject);
             case (focusedObject instanceof ConditionSet):
-                return <ResultSetTable resultSet={(focusedObject as ConditionSet).apply(this.props.universe)} />
+                return this.renderConditionSet(focusedObject as ConditionSet);
         }
 
+        //default view
         let conditionSet = new ConditionSet();
         conditionSet
             .addSource(new ConditionSourceSentinel())
-            .addFilter(new ConditionFilterByStar(this.props.universe.getStars()[0]))
             .addExposer(new ConditionExposeSentinel(this.navigation))
         ;
 
-        return <ResultSetTable resultSet={conditionSet.apply(this.props.universe)} />
+        return <ResultSetTable resultSet={conditionSet.apply(this.navigation)} />
     }
 }
 

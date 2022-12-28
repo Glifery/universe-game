@@ -1,11 +1,12 @@
 import React, {FC} from "react";
 import Sentinel from "../../domain/universe/object/Sentinel";
 import {Button, Card, CardActions, CardContent, Typography} from "@mui/material";
-import LinkUniverseDetail from "../elements/LinkUniverseDetail";
+import LinkPanelDetail from "../elements/LinkPanelDetail";
 import CoordinateSentinel from "../widget/CoordinateSentinel";
 import DescriptionBlock from "../widget/DescriptionBlock";
 import DescriptionKeyValue from "../widget/DescriptionKeyValue";
 import PanelNavigation from "../types/PanelNavigation";
+import ConditionObject from "../../application/univerce/condition/ConditionObject";
 
 type Props = {
     navigation: PanelNavigation;
@@ -22,14 +23,14 @@ const PanelDetailSentinel: FC<Props> = ({ navigation, sentinel }: Props) =>
             <Typography component="div">
                 <DescriptionBlock>
                     <DescriptionKeyValue descriptionKey={"Star:"}>
-                        <LinkUniverseDetail onClick={() => navigation.focus(sentinel.getPlanet().getStar())}>
+                        <LinkPanelDetail onClick={navigation.navigateOnClick(new ConditionObject(sentinel.getPlanet().getStar()))}>
                             {sentinel.getPlanet().getStar().getName()}
-                        </LinkUniverseDetail>
+                        </LinkPanelDetail>
                     </DescriptionKeyValue>
                     <DescriptionKeyValue descriptionKey={"Planet:"}>
-                        <LinkUniverseDetail onClick={() => navigation.focus(sentinel.getPlanet())}>
+                        <LinkPanelDetail onClick={navigation.navigateOnClick(new ConditionObject(sentinel.getPlanet()))}>
                             {sentinel.getPlanet().getName()}
-                        </LinkUniverseDetail>
+                        </LinkPanelDetail>
                     </DescriptionKeyValue>
                 </DescriptionBlock>
             </Typography>

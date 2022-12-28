@@ -1,11 +1,11 @@
 import ConditionSourceInterface from "./ConditionSourceInterface";
 import ResultSet from "./ResultSet";
-import Universe from "../Universe";
 import ResultItem from "./ResultItem";
 import ConditionExposeInterface from "./ConditionExposeInterface";
 import ConditionFilterInterface from "./ConditionFilterInterface";
 import Util from "../../util/Util";
 import ConditionInterface from "./ConditionInterface";
+import PanelNavigation from "../../../ui/types/PanelNavigation";
 
 class ConditionSet implements ConditionInterface {
     private sourcers: ConditionSourceInterface[];
@@ -36,9 +36,9 @@ class ConditionSet implements ConditionInterface {
         return this;
     }
 
-    apply(universe: Universe): ResultSet {
+    apply(navigation: PanelNavigation): ResultSet {
         let selectedItems = this.sourcers
-            .map(source => source.apply(universe))
+            .map(source => source.apply(navigation.universe))
             .flat()
             .filter(Util.filterUnique)//remove unique
         ;
@@ -54,7 +54,7 @@ class ConditionSet implements ConditionInterface {
             )
             .map((selectedItem): ResultItem =>
                 this.exposers.reduce(
-                    (resultItem, exposer) => exposer.apply(resultItem, selectedItem),
+                    (resultItem, exposer) => exposer.apply(resultItem, selectedItem, navigation),
                     new ResultItem(selectedItem)
                 )
             )

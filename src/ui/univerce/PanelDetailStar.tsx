@@ -1,25 +1,55 @@
-import React, {FC} from "react";
+import React, {Component} from "react";
 import {Button, Card, CardActions, CardContent, Typography} from "@mui/material";
 import Star from "../../domain/universe/object/Star";
 import CoordinateStar from "../widget/CoordinateStar";
 import PanelNavigation from "../types/PanelNavigation";
+import ConditionSet from "../../application/univerce/condition/ConditionSet";
+import DescriptionBlock from "../widget/DescriptionBlock";
+import DescriptionKeyValue from "../widget/DescriptionKeyValue";
+import LinkPanelDetail from "../elements/LinkPanelDetail";
+import ConditionExposePlanet from "../../application/univerce/condition/expose/ConditionExposePlanet";
+import ConditionFilterByStar from "../../application/univerce/condition/filter/ConditionFilterByStar";
+import ConditionSourcePlanet from "../../application/univerce/condition/source/ConditionSourcePlanet";
 
 type Props = {
     navigation: PanelNavigation;
     star: Star;
 }
 
-const PanelDetailStar: FC<Props> = ({ navigation, star }: Props) =>
-    <Card>
-        <CardContent>
-            <h2>{star.getName()}</h2>
-            <Typography color="text.secondary" gutterBottom>
-                coordinate: <CoordinateStar star={star} navigation={navigation} />
-            </Typography>
-        </CardContent>
-        <CardActions>
-            <Button size="small">Learn More</Button>
-        </CardActions>
-    </Card>
+class PanelDetailStar extends Component<Props> {
+    navigateToPlanetsList() {
+        let {navigation, star} = this.props;
+
+        return navigation.navigateOnClick(
+            new ConditionSet()
+                .addSource(new ConditionSourcePlanet())
+                .addFilter(new ConditionFilterByStar(star))
+                .addExposer(new ConditionExposePlanet(navigation))
+        );
+    }
+
+    render() {
+        let {navigation, star} = this.props;
+
+        return <Card>
+            <CardContent>
+                <h2>{star.getName()}</h2>
+                <Typography color="text.secondary" gutterBottom>
+                    coordinate: <CoordinateStar star={star} navigation={navigation} />
+                </Typography>
+                <Typography component="div">
+                    <DescriptionBlock>
+                        <DescriptionKeyValue descriptionKey={"Planets:"}>
+                            <LinkPanelDetail onClick={this.navigateToPlanetsList()}>{star.getPlanets().length} planets</LinkPanelDetail>
+                        </DescriptionKeyValue>
+                    </DescriptionBlock>
+                </Typography>
+            </CardContent>
+            <CardActions>
+                <Button size="small">Learn More</Button>
+            </CardActions>
+        </Card>
+    }
+}
 
 export default PanelDetailStar;
