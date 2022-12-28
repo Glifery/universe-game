@@ -1,18 +1,18 @@
 import React, {FC} from "react";
-import FocusedObject from "../types/FocusedObject";
-import {Box, Typography} from "@mui/material";
+import {Typography} from "@mui/material";
 import CoordinateItem from "./CoordinateItem";
 import Star from "../../domain/universe/object/Star";
+import PanelNavigation from "../types/PanelNavigation";
 
 type Props = {
+    navigation: PanelNavigation;
     star: Star;
-    focus: (focusedObject: FocusedObject) => void;
 }
 
-const CoordinateStar: FC<Props> = ({ star, focus }: Props) =>
+const CoordinateStar: FC<Props> = ({ navigation, star }: Props) =>
     <Typography color="text.secondary">
         (
-        <CoordinateItem object={star} focus={focus} />
+        <CoordinateItem object={star} navigation={navigation} />
         )
     </Typography>
 

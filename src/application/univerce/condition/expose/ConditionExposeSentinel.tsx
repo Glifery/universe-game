@@ -3,19 +3,20 @@ import FocusedObject from "../../../../ui/types/FocusedObject";
 import ResultItem from "../ResultItem";
 import Sentinel from "../../../../domain/universe/object/Sentinel";
 import CoordinateSentinel from "../../../../ui/widget/CoordinateSentinel";
+import PanelNavigation from "../../../../ui/types/PanelNavigation";
 
 class ConditionExposeSentinel implements ConditionExposeInterface {
-    private focus: (focusedObject: FocusedObject) => void;
+    private navigation: PanelNavigation;
 
-    constructor(focus: (focusedObject: FocusedObject) => void) {
-        this.focus = focus;
+    constructor(navigation: PanelNavigation) {
+        this.navigation = navigation;
     }
 
     apply(resultItem: ResultItem, focusedObject: FocusedObject): ResultItem {
         resultItem.addField("id", focusedObject.getId());
 
         if (focusedObject instanceof Sentinel) {
-            resultItem.addField("coordinate", <CoordinateSentinel sentinel={focusedObject} focus={this.focus} />);
+            resultItem.addField("coordinate", <CoordinateSentinel sentinel={focusedObject} navigation={this.navigation} />);
             resultItem.addField("name", focusedObject.getName());
             resultItem.addField("planet", focusedObject.getPlanet().getName());
             resultItem.addField("star", focusedObject.getPlanet().getStar().getName());

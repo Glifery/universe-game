@@ -1,17 +1,18 @@
 import React, {FC} from "react";
-import FocusedObject from "../types/FocusedObject";
 import BaseUniverseObject from "../../domain/universe/BaseUniverseObject";
 import LinkUniverseDetail from "../elements/LinkUniverseDetail";
+import PanelNavigation from "../types/PanelNavigation";
+import ConditionObject from "../../application/univerce/condition/ConditionObject";
 
 type Props = {
+    navigation: PanelNavigation;
     object: BaseUniverseObject;
-    focus: (focusedObject: FocusedObject) => void;
 }
 
-const CoordinateItem: FC<Props> = ({ object, focus }: Props) =>
+const CoordinateItem: FC<Props> = ({ navigation, object }: Props) =>
     <LinkUniverseDetail
         onClick={() => {
-            focus(object);
+            navigation.focus(new ConditionObject(object));
         }}
     >
         {object.getCoordinate().getValue()}

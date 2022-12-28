@@ -1,6 +1,6 @@
 import {FC} from "react";
 import {Table, TableBody, TableHead, TableCell, TableRow} from "@mui/material";
-import ResultSet from "../../application/univerce/repository/ResultSet";
+import ResultSet from "../../application/univerce/condition/ResultSet";
 
 type Props = {
     resultSet: ResultSet

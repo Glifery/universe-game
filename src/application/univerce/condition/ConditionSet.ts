@@ -5,8 +5,9 @@ import ResultItem from "./ResultItem";
 import ConditionExposeInterface from "./ConditionExposeInterface";
 import ConditionFilterInterface from "./ConditionFilterInterface";
 import Util from "../../util/Util";
+import ConditionInterface from "./ConditionInterface";
 
-class ConditionSet {
+class ConditionSet implements ConditionInterface {
     private sourcers: ConditionSourceInterface[];
     private filters: ConditionFilterInterface[];
     private exposers: ConditionExposeInterface[];
