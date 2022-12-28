@@ -9,12 +9,12 @@ type Props = {
     focus: (focusedObject: FocusedObject) => void;
 }
 
-const DetailPageStar: FC<Props> = ({ star, focus }: Props) =>
+const PanelDetailStar: FC<Props> = ({ star, focus }: Props) =>
     <Card>
         <CardContent>
             <h2>{star.getName()}</h2>
             <Typography color="text.secondary" gutterBottom>
-                <CoordinateStar star={star} focus={focus} />
+                coordinate: <CoordinateStar star={star} focus={focus} />
             </Typography>
         </CardContent>
         <CardActions>
@@ -22,4 +22,4 @@ const DetailPageStar: FC<Props> = ({ star, focus }: Props) =>
         </CardActions>
     </Card>
 
-export default DetailPageStar;
+export default PanelDetailStar;

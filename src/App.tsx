@@ -1,21 +1,21 @@
 import React, {PureComponent} from 'react';
 import './App.css';
-import Generator from "./application/universe-generator/Generator";
+import Universe from "./application/univerce/Universe";
 import {Container} from "@mui/material";
-import SelectedDomain from "./ui/SelectedDomain";
+import PanelFocused from "./ui/PanelFocused";
 
 class App extends PureComponent {
-    generator: Generator;
+    universe: Universe;
 
     constructor(props: any) {
         super(props);
-        this.generator = new Generator();
+        this.universe = Universe.generate();
     };
 
     render() {
         return (
             <Container maxWidth="sm">
-                <SelectedDomain stars={this.generator.getStars()} />
+                <PanelFocused universe={this.universe} />
             </Container>
         );
     }

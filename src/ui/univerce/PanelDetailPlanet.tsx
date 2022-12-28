@@ -1,34 +1,29 @@
 import React, {FC} from "react";
-import Sentinel from "../../domain/universe/object/Sentinel";
 import {Button, Card, CardActions, CardContent, Typography} from "@mui/material";
 import FocusedObject from "../types/FocusedObject";
 import LinkUniverseDetail from "../elements/LinkUniverseDetail";
-import CoordinateSentinel from "../widget/CoordinateSentinel";
 import DescriptionBlock from "../widget/DescriptionBlock";
 import DescriptionKeyValue from "../widget/DescriptionKeyValue";
+import Planet from "../../domain/universe/object/Planet";
+import CoordinatePlanet from "../widget/CoordinatePlanet";
 
 type Props = {
-    sentinel: Sentinel;
+    planet: Planet;
     focus: (focusedObject: FocusedObject) => void;
 }
 
-const DetailPageSentinel: FC<Props> = ({ sentinel, focus }: Props) =>
+const PanelDetailPlanet: FC<Props> = ({ planet, focus }: Props) =>
     <Card>
         <CardContent>
-            <h2>{sentinel.getName()}</h2>
+            <h2>{planet.getName()}</h2>
             <Typography color="text.secondary" gutterBottom>
-                <CoordinateSentinel sentinel={sentinel} focus={focus} />
+                coordinate: <CoordinatePlanet planet={planet} focus={focus} />
             </Typography>
             <Typography component="div">
                 <DescriptionBlock>
                     <DescriptionKeyValue descriptionKey={"Star:"}>
-                        <LinkUniverseDetail onClick={() => focus(sentinel.getPlanet().getStar())}>
-                            {sentinel.getPlanet().getStar().getName()}
-                        </LinkUniverseDetail>
-                    </DescriptionKeyValue>
-                    <DescriptionKeyValue descriptionKey={"Planet:"}>
-                        <LinkUniverseDetail onClick={() => focus(sentinel.getPlanet())}>
-                            {sentinel.getPlanet().getName()}
+                        <LinkUniverseDetail onClick={() => focus(planet.getStar())}>
+                            {planet.getStar().getName()}
                         </LinkUniverseDetail>
                     </DescriptionKeyValue>
                 </DescriptionBlock>
@@ -39,4 +34,4 @@ const DetailPageSentinel: FC<Props> = ({ sentinel, focus }: Props) =>
         </CardActions>
     </Card>
 
-export default DetailPageSentinel;
+export default PanelDetailPlanet;

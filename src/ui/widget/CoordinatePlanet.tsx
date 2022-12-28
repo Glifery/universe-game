@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 import FocusedObject from "../types/FocusedObject";
-import {Box} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import CoordinateItem from "./CoordinateItem";
 import Planet from "../../domain/universe/object/Planet";
 
@@ -10,12 +10,12 @@ type Props = {
 }
 
 const CoordinatePlanet: FC<Props> = ({ planet, focus }: Props) =>
-    <Box component="span">
-        coordinate: (
+    <Typography color="text.secondary">
+        (
         <CoordinateItem object={planet.getStar()} focus={focus} />
         -
         <CoordinateItem object={planet} focus={focus} />
         )
-    </Box>
+    </Typography>
 
 export default CoordinatePlanet;

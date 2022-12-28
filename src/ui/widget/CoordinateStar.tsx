@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 import FocusedObject from "../types/FocusedObject";
-import {Box} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import CoordinateItem from "./CoordinateItem";
 import Star from "../../domain/universe/object/Star";
 
@@ -10,10 +10,10 @@ type Props = {
 }
 
 const CoordinateStar: FC<Props> = ({ star, focus }: Props) =>
-    <Box component="span">
-        coordinate: (
+    <Typography color="text.secondary">
+        (
         <CoordinateItem object={star} focus={focus} />
         )
-    </Box>
+    </Typography>
 
 export default CoordinateStar;
