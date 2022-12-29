@@ -1,9 +1,9 @@
-import FocusedObject from "../../../../ui/types/FocusedObject";
+import FocusedObject from "../../../../ui/type/FocusedObject";
 import ResultItem from "../ResultItem";
 import Sentinel from "../../../../domain/universe/object/Sentinel";
 import React from "react";
 import ConditionExposeBase from "./ConditionExposeBase";
-import PanelNavigation from "../../../../ui/types/PanelNavigation";
+import PanelNavigation from "../../../../ui/type/PanelNavigation";
 
 class ConditionExposeSentinel extends ConditionExposeBase {
     apply(resultItem: ResultItem, focusedObject: FocusedObject, navigation: PanelNavigation): ResultItem {

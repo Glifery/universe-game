@@ -5,7 +5,7 @@ import ConditionExposeInterface from "./ConditionExposeInterface";
 import ConditionFilterInterface from "./ConditionFilterInterface";
 import Util from "../../util/Util";
 import ConditionInterface from "./ConditionInterface";
-import PanelNavigation from "../../../ui/types/PanelNavigation";
+import PanelNavigation from "../../../ui/type/PanelNavigation";
 
 class ConditionSet implements ConditionInterface {
     private sourcers: ConditionSourceInterface[];

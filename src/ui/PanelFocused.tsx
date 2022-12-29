@@ -7,12 +7,12 @@ import PanelDetailPlanet from "./univerce/PanelDetailPlanet";
 import PanelDetailStar from "./univerce/PanelDetailStar";
 import ResultSetTable from "./widget/ResultSetTable";
 import ConditionSet from "../application/univerce/condition/ConditionSet";
-import ConditionSourceSentinel from "../application/univerce/condition/source/ConditionSourceSentinel";
-import ConditionExposeSentinel from "../application/univerce/condition/expose/ConditionExposeSentinel";
 import Universe from "../application/univerce/Universe";
-import PanelNavigation from "./types/PanelNavigation";
+import PanelNavigation from "./type/PanelNavigation";
 import ConditionInterface from "../application/univerce/condition/ConditionInterface";
 import ConditionObject from "../application/univerce/condition/ConditionObject";
+import ConditionSourceStar from "../application/univerce/condition/source/ConditionSourceStar";
+import ConditionExposeStar from "../application/univerce/condition/expose/ConditionExposeStar";
 
 type Props = {
     universe: Universe;
@@ -92,8 +92,8 @@ class PanelFocused extends Component<Props, State> {
         //default view
         let conditionSet = new ConditionSet();
         conditionSet
-            .addSource(new ConditionSourceSentinel())
-            .addExposer(new ConditionExposeSentinel(this.navigation))
+            .addSource(new ConditionSourceStar())
+            .addExposer(new ConditionExposeStar(this.navigation))
         ;
 
         return <ResultSetTable resultSet={conditionSet.apply(this.navigation)} />

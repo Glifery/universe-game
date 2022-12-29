@@ -1,3 +1,5 @@
+import RandomValue from "../../application/util/random/RandomValue";
+
 const MinValue = 0;
 const MaxValue = 1000;
 
@@ -8,6 +10,10 @@ class Coordinate {
         this.validate(value)
 
         this.value = value;
+    }
+
+    static fromRandom(randomValue: RandomValue): Coordinate {
+        return new Coordinate(randomValue.nextRound());
     }
 
     validate(value: number): Error | null {

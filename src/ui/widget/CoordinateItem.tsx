@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import BaseUniverseObject from "../../domain/universe/BaseUniverseObject";
 import LinkPanelDetail from "../elements/LinkPanelDetail";
-import PanelNavigation from "../types/PanelNavigation";
+import PanelNavigation from "../type/PanelNavigation";
 import ConditionObject from "../../application/univerce/condition/ConditionObject";
 
 type Props = {

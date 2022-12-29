@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Button, Card, CardActions, CardContent, Typography} from "@mui/material";
 import Star from "../../domain/universe/object/Star";
 import CoordinateStar from "../widget/CoordinateStar";
-import PanelNavigation from "../types/PanelNavigation";
+import PanelNavigation from "../type/PanelNavigation";
 import ConditionSet from "../../application/univerce/condition/ConditionSet";
 import DescriptionBlock from "../widget/DescriptionBlock";
 import DescriptionKeyValue from "../widget/DescriptionKeyValue";

@@ -1,4 +1,4 @@
-import FocusedObject from "../../../../ui/types/FocusedObject";
+import FocusedObject from "../../../../ui/type/FocusedObject";
 import ResultItem from "../ResultItem";
 import React from "react";
 import Planet from "../../../../domain/universe/object/Planet";
@@ -7,7 +7,7 @@ import LinkPanelDetail from "../../../../ui/elements/LinkPanelDetail";
 import ConditionSet from "../ConditionSet";
 import ConditionSourceSentinel from "../source/ConditionSourceSentinel";
 import ConditionFilterByPlanet from "../filter/ConditionFilterByPlanet";
-import PanelNavigation from "../../../../ui/types/PanelNavigation";
+import PanelNavigation from "../../../../ui/type/PanelNavigation";
 import ConditionExposeSentinel from "./ConditionExposeSentinel";
 
 class ConditionExposePlanet extends ConditionExposeBase {

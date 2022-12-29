@@ -1,5 +1,5 @@
 import ConditionFilterInterface from "../ConditionFilterInterface";
-import FocusedObject from "../../../../ui/types/FocusedObject";
+import FocusedObject from "../../../../ui/type/FocusedObject";
 import Star from "../../../../domain/universe/object/Star";
 import Planet from "../../../../domain/universe/object/Planet";
 import Sentinel from "../../../../domain/universe/object/Sentinel";

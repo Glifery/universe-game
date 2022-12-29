@@ -7,24 +7,26 @@ type Props = {
 }
 
 const ResultSetTable: FC<Props> = ({ resultSet }: Props) => {
-    return <Table>
-        <TableHead>
-            <TableRow>
-                {resultSet.getAvailableFields().map(field => (
-                    <TableCell key={"h-"+field} align={"center"}>{field}</TableCell>
-                ))}
-            </TableRow>
-        </TableHead>
-        <TableBody>
-            {resultSet.getItems().map((item, index) => (
-                <TableRow key={index}>
-                    {item.getFieldValues().map(entry => (
-                        <TableCell key={index+"-"+entry[0]} align={"center"}>{entry[1]}</TableCell>
+    return <>
+        <Table>
+            <TableHead>
+                <TableRow>
+                    {resultSet.getAvailableFields().map(field => (
+                        <TableCell key={"h-"+field} align={"center"}>{field}</TableCell>
                     ))}
                 </TableRow>
-            ))}
-        </TableBody>
-    </Table>
+            </TableHead>
+            <TableBody>
+                {resultSet.getItems().map((item, index) => (
+                    <TableRow key={index}>
+                        {item.getFieldValues().map(entry => (
+                            <TableCell key={index+"-"+entry[0]} align={"center"}>{entry[1]}</TableCell>
+                        ))}
+                    </TableRow>
+                ))}
+            </TableBody>
+        </Table>
+    </>
 }
 
 export default ResultSetTable;

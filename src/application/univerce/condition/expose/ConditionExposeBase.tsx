@@ -1,9 +1,9 @@
 import ConditionExposeInterface from "../ConditionExposeInterface";
-import FocusedObject from "../../../../ui/types/FocusedObject";
+import FocusedObject from "../../../../ui/type/FocusedObject";
 import ResultItem from "../ResultItem";
 import Sentinel from "../../../../domain/universe/object/Sentinel";
 import CoordinateSentinel from "../../../../ui/widget/CoordinateSentinel";
-import PanelNavigation from "../../../../ui/types/PanelNavigation";
+import PanelNavigation from "../../../../ui/type/PanelNavigation";
 import ConditionObject from "../ConditionObject";
 import LinkPanelDetail from "../../../../ui/elements/LinkPanelDetail";
 import React, {ReactNode} from "react";

@@ -8,7 +8,7 @@ import CoordinatePlanet from "../widget/CoordinatePlanet";
 import ConditionSourceSentinel from "../../application/univerce/condition/source/ConditionSourceSentinel";
 import ConditionExposeSentinel from "../../application/univerce/condition/expose/ConditionExposeSentinel";
 import ConditionSet from "../../application/univerce/condition/ConditionSet";
-import PanelNavigation from "../types/PanelNavigation";
+import PanelNavigation from "../type/PanelNavigation";
 import ConditionFilterByPlanet from "../../application/univerce/condition/filter/ConditionFilterByPlanet";
 import ConditionObject from "../../application/univerce/condition/ConditionObject";
 

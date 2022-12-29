@@ -1,5 +1,5 @@
 import Coordinate from "../position/Coordinate";
-import FocusedObject from "../../ui/types/FocusedObject";
+import FocusedObject from "../../ui/type/FocusedObject";
 
 class BaseUniverseObject implements FocusedObject {
     private readonly id: number;

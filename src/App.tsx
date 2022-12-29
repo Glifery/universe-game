@@ -14,7 +14,7 @@ class App extends PureComponent {
 
     render() {
         return (
-            <Container maxWidth="sm">
+            <Container fixed>
                 <PanelFocused universe={this.universe} />
             </Container>
         );

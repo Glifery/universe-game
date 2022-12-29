@@ -1,4 +1,4 @@
-import FocusedObject from "../../../ui/types/FocusedObject";
+import FocusedObject from "../../../ui/type/FocusedObject";
 import ConditionInterface from "./ConditionInterface";
 
 class ConditionObject implements ConditionInterface {

@@ -5,7 +5,7 @@ import LinkPanelDetail from "../elements/LinkPanelDetail";
 import CoordinateSentinel from "../widget/CoordinateSentinel";
 import DescriptionBlock from "../widget/DescriptionBlock";
 import DescriptionKeyValue from "../widget/DescriptionKeyValue";
-import PanelNavigation from "../types/PanelNavigation";
+import PanelNavigation from "../type/PanelNavigation";
 import ConditionObject from "../../application/univerce/condition/ConditionObject";
 
 type Props = {
