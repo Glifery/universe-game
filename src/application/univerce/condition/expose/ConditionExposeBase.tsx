@@ -13,14 +13,33 @@ import CoordinateStar from "../../../../ui/widget/CoordinateStar";
 import Planet from "../../../../domain/universe/object/Planet";
 import CoordinatePlanet from "../../../../ui/widget/CoordinatePlanet";
 
-abstract class ConditionExposeBase implements ConditionExposeInterface {
+class ConditionExposeBase implements ConditionExposeInterface {
     protected readonly navigation: PanelNavigation;
 
     constructor(navigation: PanelNavigation) {
         this.navigation = navigation;
     }
 
-    abstract apply(resultItem: ResultItem, focusedObject: FocusedObject, navigation: PanelNavigation): ResultItem;
+    apply(resultItem: ResultItem, focusedObject: FocusedObject, navigation: PanelNavigation): ResultItem {
+        resultItem.addField("id", focusedObject.getId());
+
+        if (focusedObject instanceof Star) {
+            resultItem.addField("coordinate", this.renderStarCoordinate(focusedObject));
+            resultItem.addField("name", this.renderStarName(focusedObject));
+        }
+
+        if (focusedObject instanceof Planet) {
+            resultItem.addField("coordinate", this.renderPlanetCoordinate(focusedObject));
+            resultItem.addField("name", this.renderPlanetName(focusedObject));
+        }
+
+        if (focusedObject instanceof Sentinel) {
+            resultItem.addField("coordinate", this.renderSentinelCoordinate(focusedObject));
+            resultItem.addField("name", this.renderSentinelName(focusedObject));
+        }
+
+        return resultItem;
+    }
 
     protected renderStarName(star: Star): ReactNode {
         return <LinkPanelDetail onClick={this.navigation.navigateOnClick(new ConditionObject(star))}>

@@ -25,7 +25,7 @@ type State = {
 class PanelFocused extends Component<Props, State> {
     private readonly navigation: PanelNavigation
 
-    constructor(props: any) {
+    constructor(props: Props) {
         super(props);
 
         this.state = {
@@ -76,7 +76,7 @@ class PanelFocused extends Component<Props, State> {
     }
 
     renderConditionSet(conditionSet: ConditionSet) {
-        return <ResultSetTable resultSet={conditionSet.apply(this.navigation)} />
+        return <ResultSetTable navigation={this.navigation} conditionSet={conditionSet} resultSet={conditionSet.apply(this.navigation)} />
     }
 
     render() {
@@ -96,7 +96,7 @@ class PanelFocused extends Component<Props, State> {
             .addExposer(new ConditionExposeStar(this.navigation))
         ;
 
-        return <ResultSetTable resultSet={conditionSet.apply(this.navigation)} />
+        return this.renderConditionSet(conditionSet);
     }
 }
 

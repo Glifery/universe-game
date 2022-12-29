@@ -3,6 +3,9 @@ import FocusedObject from "../../../../ui/type/FocusedObject";
 import Universe from "../../Universe";
 
 class ConditionSourceSentinel implements ConditionSourceInterface {
+    getName(): string {
+        return "Sentinel";
+    }
     apply(universe: Universe): FocusedObject[] {
         return universe.getSentinels();
     }

@@ -18,24 +18,6 @@ class ConditionSet implements ConditionInterface {
         this.exposers = [];
     }
 
-    addSource(source: ConditionSourceInterface): ConditionSet {
-        this.sourcers.push(source);
-
-        return this;
-    }
-
-    addFilter(filter: ConditionFilterInterface): ConditionSet {
-        this.filters.push(filter);
-
-        return this;
-    }
-
-    addExposer(exposer: ConditionExposeInterface): ConditionSet {
-        this.exposers.push(exposer);
-
-        return this;
-    }
-
     apply(navigation: PanelNavigation): ResultSet {
         let selectedItems = this.sourcers
             .map(source => source.apply(navigation.universe))
@@ -61,6 +43,54 @@ class ConditionSet implements ConditionInterface {
             .forEach(resultItem => resultSet.addItem(resultItem));
 
         return resultSet;
+    }
+
+    setSources(sources: ConditionSourceInterface[]): ConditionSet {
+        this.sourcers = sources;
+
+        return this;
+    }
+
+    addSource(source: ConditionSourceInterface): ConditionSet {
+        this.sourcers.push(source);
+
+        return this;
+    }
+
+    setFilters(filters: ConditionFilterInterface[]): ConditionSet {
+        this.filters = filters;
+
+        return this;
+    }
+
+    addFilter(filter: ConditionFilterInterface): ConditionSet {
+        this.filters.push(filter);
+
+        return this;
+    }
+
+    setExposers(exposers: ConditionExposeInterface[]): ConditionSet {
+        this.exposers = exposers;
+
+        return this;
+    }
+
+    addExposer(exposer: ConditionExposeInterface): ConditionSet {
+        this.exposers.push(exposer);
+
+        return this;
+    }
+
+    getSources(): ConditionSourceInterface[] {
+        return this.sourcers;
+    }
+
+    getFilters(): ConditionFilterInterface[] {
+        return this.filters;
+    }
+
+    getExposers(): ConditionExposeInterface[] {
+        return this.exposers;
     }
 }
 
