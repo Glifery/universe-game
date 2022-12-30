@@ -30,19 +30,19 @@ class Universe {
 
     generateStars(randomNameGenerator: RandomNamesGenerator): void {
         const starsAmount: number = RandomValue.createInterval(80, 100).nextRound();
-        const coordinateRandom: RandomValue = RandomValue.createDistributedHardInterval(0, 1000, 0);
+        const coordinates: number[] = RandomValue.createDistributedHardInterval(0, 1000, 0).listRoundUniqueAsc(starsAmount);
 
-        for (let i=0; i<starsAmount; i++) {
+        coordinates.forEach(coordinate => {
             let star = new Star(
                 GlobalIdProvider.getNextId(),
                 randomNameGenerator.getRandom(),
-                Coordinate.fromRandom(coordinateRandom)
+                new Coordinate(coordinate)
             );
 
             this.generatePlanets(star, randomNameGenerator);
 
             this.stars.push(star);
-        }
+        });
     }
 
     generatePlanets(star: Star, randomNameGenerator: RandomNamesGenerator): void {
@@ -51,19 +51,13 @@ class Universe {
         }
 
         const planetsAmount: number = RandomValue.createInterval(1, 15).nextRound();
-        const coordinateRandom: RandomValue = RandomValue.createDistributedSoftInterval(50, 200, 100);
+        const coordinates: number[] = RandomValue.createDistributedHardInterval(50, 200, 100).listRoundUniqueAsc(planetsAmount);
 
-        let coordinates: number[] = [];
-        for (let i=0; i<planetsAmount; i++) {
-            coordinates.push(coordinateRandom.nextRound());
-        }
-        coordinates.sort((a, b) => a - b);
-
-        for (let i=0; i<planetsAmount; i++) {
+        coordinates.forEach(coordinate => {
             let planet = new Planet(
                 GlobalIdProvider.getNextId(),
                 randomNameGenerator.getRandom(),
-                new Coordinate(coordinates[i]),
+                new Coordinate(coordinate),
                 star
             );
 
@@ -74,7 +68,7 @@ class Universe {
 
             star.addPlanet(planet);
             this.planets.push(planet);
-        }
+        });
     }
 
     generateSentinels(planet: Planet, randomNameGenerator: RandomNamesGenerator): void {
@@ -83,19 +77,13 @@ class Universe {
         }
 
         const sentinelsAmount: number = RandomValue.createDistributedSoftInterval(0, 10, 0).nextRound();
-        const coordinateRandom: RandomValue = RandomValue.createDistributedSoftInterval(30, 100, 50);
+        const coordinates: number[] = RandomValue.createDistributedSoftInterval(30, 100, 50).listRoundUniqueAsc(sentinelsAmount);
 
-        let coordinates: number[] = [];
-        for (let i=0; i<sentinelsAmount; i++) {
-            coordinates.push(coordinateRandom.nextRound());
-        }
-        coordinates.sort((a, b) => a - b);
-
-        for (let i=0; i<=sentinelsAmount; i++) {
+        coordinates.forEach(coordinate => {
             let sentinel = new Sentinel(
                 GlobalIdProvider.getNextId(),
                 randomNameGenerator.getRandom(),
-                new Coordinate(coordinates[i]),
+                new Coordinate(coordinate),
                 planet
             );
 
@@ -104,7 +92,7 @@ class Universe {
 
             planet.addSentinel(sentinel);
             this.sentinels.push(sentinel);
-        }
+        });
     }
 
     getStars(): Star[] {

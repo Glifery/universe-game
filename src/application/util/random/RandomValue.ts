@@ -43,6 +43,24 @@ class RandomValue {
         return Math.round(this.next());
     }
 
+    listRoundUniqueAsc(amount: number): number[] {
+        let rands: number[] = [];
+
+        while (rands.length < amount) {
+            // let rand = this.next();
+            let rand;
+            do {
+                rand = this.nextRound();
+            } while (rands.indexOf(rand) !== -1) {
+                rands.push(rand);
+            }
+        }
+
+        rands.sort((a, b) => a - b);
+
+        return rands;
+    }
+
     getMinValue(): number {
         return this.minValue;
     }
