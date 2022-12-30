@@ -7,11 +7,15 @@ import SentinelOrbit from "../../domain/universe/object/SentinelOrbit";
 import RandomNamesGenerator from "../util/RandomNamesGenerator";
 import GlobalIdProvider from "../util/GlobalIdProvider";
 import RandomValue from "../util/random/RandomValue";
+import MassPointsDefinition from "./definition/MassPointsDefinition";
+import SizePointsDefinition from "./definition/SizePointsDefinition";
+import ShiningPointsDefinition from "./definition/ShiningPointsDefinition";
 
 class Universe {
-    stars: Star[];
-    planets: Planet[];
-    sentinels: Sentinel[];
+    private readonly stars: Star[];
+    private readonly planets: Planet[];
+    private readonly sentinels: Sentinel[];
+    private randomNameGenerator: RandomNamesGenerator;
 
     public static generate(): Universe {
         return new Universe();
@@ -21,31 +25,40 @@ class Universe {
         this.stars = [];
         this.planets = [];
         this.sentinels = [];
+        this.randomNameGenerator =new RandomNamesGenerator();
 
         GlobalIdProvider.reset();
-        const nameGenerator = new RandomNamesGenerator();
 
-        this.generateStars(nameGenerator);
+        this.generateStars();
     }
 
-    generateStars(randomNameGenerator: RandomNamesGenerator): void {
+    generateStars(): void {
         const starsAmount: number = RandomValue.createInterval(80, 100).nextRound();
         const coordinates: number[] = RandomValue.createDistributedHardInterval(0, 1000, 0).listRoundUniqueAsc(starsAmount);
 
         coordinates.forEach(coordinate => {
-            let star = new Star(
-                GlobalIdProvider.getNextId(),
-                randomNameGenerator.getRandom(),
-                new Coordinate(coordinate)
-            );
+            let star = this.createStar(new Coordinate(coordinate));
 
-            this.generatePlanets(star, randomNameGenerator);
+            this.generatePlanets(star);
 
             this.stars.push(star);
         });
     }
 
-    generatePlanets(star: Star, randomNameGenerator: RandomNamesGenerator): void {
+    createStar(coordinate: Coordinate): Star {
+        let star = new Star(
+            GlobalIdProvider.getNextId(),
+            this.randomNameGenerator.getRandom(),
+            coordinate,
+            RandomValue.createInterval(20000000, 1000000000).nextValueDefinition<MassPointsDefinition>(new MassPointsDefinition()),
+            RandomValue.createInterval(20000000, 1000000000).nextValueDefinition<SizePointsDefinition>(new SizePointsDefinition()),
+            RandomValue.createDistributedSoftInterval(0.1, 10, 1).nextValueDefinition<ShiningPointsDefinition>(new ShiningPointsDefinition()),
+        );
+
+        return star;
+    }
+
+    generatePlanets(star: Star): void {
         if (RandomValue.createDefault().next() < 0.3) {
             return;
         }
@@ -56,7 +69,7 @@ class Universe {
         coordinates.forEach(coordinate => {
             let planet = new Planet(
                 GlobalIdProvider.getNextId(),
-                randomNameGenerator.getRandom(),
+                this.randomNameGenerator.getRandom(),
                 new Coordinate(coordinate),
                 star
             );
@@ -64,14 +77,14 @@ class Universe {
             let planetOrbit = new PlanetOrbit(planet);
             planet.setOrbit(planetOrbit);
 
-            this.generateSentinels(planet, randomNameGenerator);
+            this.generateSentinels(planet);
 
             star.addPlanet(planet);
             this.planets.push(planet);
         });
     }
 
-    generateSentinels(planet: Planet, randomNameGenerator: RandomNamesGenerator): void {
+    generateSentinels(planet: Planet): void {
         if (RandomValue.createDefault().next() < 0.2) {
             return;
         }
@@ -82,7 +95,7 @@ class Universe {
         coordinates.forEach(coordinate => {
             let sentinel = new Sentinel(
                 GlobalIdProvider.getNextId(),
-                randomNameGenerator.getRandom(),
+                this.randomNameGenerator.getRandom(),
                 new Coordinate(coordinate),
                 planet
             );

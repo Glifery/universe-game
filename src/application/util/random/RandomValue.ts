@@ -1,4 +1,6 @@
 import RandomCalculator from "./RandomCalculator";
+import BaseDefinition from "../../univerce/definition/BaseDefinition";
+import ValueDefinition from "../../univerce/value/ValueDefinition";
 
 const varianceExpMin = -6;
 const varianceExpMax = 6;
@@ -41,6 +43,10 @@ class RandomValue {
 
     nextRound(): number {
         return Math.round(this.next());
+    }
+
+    nextValueDefinition<T extends BaseDefinition>(definition: T): ValueDefinition<BaseDefinition> {
+        return new ValueDefinition<T>(this.next(), definition, this.minValue, this.maxValue);
     }
 
     listRoundUniqueAsc(amount: number): number[] {

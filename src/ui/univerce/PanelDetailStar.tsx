@@ -10,6 +10,7 @@ import LinkPanelDetail from "../elements/LinkPanelDetail";
 import ConditionExposePlanet from "../../application/univerce/condition/expose/ConditionExposePlanet";
 import ConditionFilterByStar from "../../application/univerce/condition/filter/ConditionFilterByStar";
 import ConditionSourcePlanet from "../../application/univerce/condition/source/ConditionSourcePlanet";
+import ConditionObject from "../../application/univerce/condition/ConditionObject";
 
 type Props = {
     navigation: PanelNavigation;
@@ -39,6 +40,9 @@ class PanelDetailStar extends Component<Props> {
                 </Typography>
                 <Typography component="div">
                     <DescriptionBlock>
+                        <DescriptionKeyValue descriptionKey={"Mass:"}>{star.getMass().getValueDefinition()}</DescriptionKeyValue>
+                        <DescriptionKeyValue descriptionKey={"Size:"}>{star.getSize().getValueDefinition()}</DescriptionKeyValue>
+                        <DescriptionKeyValue descriptionKey={"Shining:"}>{star.getShining().getValueDefinition()}</DescriptionKeyValue>
                         <DescriptionKeyValue descriptionKey={"Planets:"}>
                             <LinkPanelDetail onClick={this.navigateToPlanetsList()}>{star.getPlanets().length} planets</LinkPanelDetail>
                         </DescriptionKeyValue>
