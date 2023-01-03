@@ -9,6 +9,7 @@ import ConditionSourceSentinel from "../source/ConditionSourceSentinel";
 import ConditionFilterByPlanet from "../filter/ConditionFilterByPlanet";
 import PanelNavigation from "../../../../ui/type/PanelNavigation";
 import ConditionExposeSentinel from "./ConditionExposeSentinel";
+import CoordinatesListBulletChart from "../../../../ui/widget/CoordinatesListBulletChart";
 
 class ConditionExposePlanet extends ConditionExposeBase {
     apply(resultItem: ResultItem, focusedObject: FocusedObject, navigation: PanelNavigation): ResultItem {
@@ -18,13 +19,17 @@ class ConditionExposePlanet extends ConditionExposeBase {
             resultItem.addField("coordinate", this.renderPlanetCoordinate(focusedObject));
             resultItem.addField("name", this.renderPlanetName(focusedObject));
             resultItem.addField("star", this.renderStarName(focusedObject.getStar()));
-            resultItem.addField("sentinels", this.navigateToSentinelsList(navigation, focusedObject));
+            resultItem.addField("sentinels", this.renderCoordinateChart(navigation, focusedObject));
         }
 
         return resultItem;
     }
 
-    private navigateToSentinelsList(navigation: PanelNavigation, planet: Planet) {
+    private renderCoordinateChart(navigation: PanelNavigation, planet: Planet) {
+        if (planet.getSentinels().length === 0) {
+            return 'No planets';
+        }
+
         return <LinkPanelDetail onClick={
             navigation.navigateOnClick(
                 new ConditionSet()
@@ -33,7 +38,7 @@ class ConditionExposePlanet extends ConditionExposeBase {
                     .addExposer(new ConditionExposeSentinel(navigation))
             )
         }>
-            {planet.getSentinels().length}
+            <CoordinatesListBulletChart list={planet.getSentinels()}/>
         </LinkPanelDetail>
     }
 }

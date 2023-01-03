@@ -1,9 +1,9 @@
-import BaseValueDefinition from "../value/BaseValueDefinition";
+import BaseValue from "../value/BaseValue";
 
 abstract class BaseDefinition {
     abstract getDefinitionName(): string;
 
-    getValueDefinition(value: BaseValueDefinition): string {
+    getValueDefinition(value: BaseValue): string {
         let val = (Math.round(value.getValue() * 100) / 100).toString();
 
         if (value.getValue() > 1000000000) {

@@ -33,7 +33,7 @@ class Universe {
     }
 
     generateStars(): void {
-        const starsAmount: number = RandomValue.createInterval(80, 100).nextRound();
+        const starsAmount: number = RandomValue.createInterval(8, 10).nextRound();
         const coordinates: number[] = RandomValue.createDistributedHardInterval(0, 1000, 0).listRoundUniqueAsc(starsAmount);
 
         coordinates.forEach(coordinate => {
@@ -63,8 +63,25 @@ class Universe {
             return;
         }
 
-        const planetsAmount: number = RandomValue.createInterval(1, 15).nextRound();
-        const coordinates: number[] = RandomValue.createDistributedHardInterval(50, 200, 100).listRoundUniqueAsc(planetsAmount);
+        const minDistance = RandomValue.createDistributedSoftInterval(
+            30,
+            100,
+            100 - (100 - 30) * star.getSize().getValueNormalized()
+        ).nextRound();
+
+        const maxDistance = RandomValue.createDistributedSoftInterval(
+            minDistance,
+            200,
+            minDistance + (200 - minDistance) * star.getMass().getValueNormalized()
+        ).nextRound();
+
+        const planetsAmount: number = RandomValue.createDistributedHardInterval(
+            0,
+            20,
+            (maxDistance - minDistance) / 10
+        ).nextRound();
+
+        const coordinates: number[] = RandomValue.createInterval(minDistance, maxDistance).listRoundUniqueAsc(planetsAmount);
 
         coordinates.forEach(coordinate => {
             let planet = new Planet(

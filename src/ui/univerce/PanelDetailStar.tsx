@@ -44,7 +44,10 @@ class PanelDetailStar extends Component<Props> {
                         <DescriptionKeyValue descriptionKey={"Size:"}>{star.getSize().getValueDefinition()}</DescriptionKeyValue>
                         <DescriptionKeyValue descriptionKey={"Shining:"}>{star.getShining().getValueDefinition()}</DescriptionKeyValue>
                         <DescriptionKeyValue descriptionKey={"Planets:"}>
-                            <LinkPanelDetail onClick={this.navigateToPlanetsList()}>{star.getPlanets().length} planets</LinkPanelDetail>
+                            {star.getPlanets().length ?
+                                <LinkPanelDetail onClick={this.navigateToPlanetsList()}>{star.getPlanets().length} planets</LinkPanelDetail> :
+                                "no planets"
+                            }
                         </DescriptionKeyValue>
                     </DescriptionBlock>
                 </Typography>

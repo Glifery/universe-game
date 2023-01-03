@@ -9,6 +9,7 @@ import Star from "../../../../domain/universe/object/Star";
 import ConditionSourcePlanet from "../source/ConditionSourcePlanet";
 import ConditionFilterByStar from "../filter/ConditionFilterByStar";
 import ConditionExposePlanet from "./ConditionExposePlanet";
+import CoordinatesListBulletChart from "../../../../ui/widget/CoordinatesListBulletChart";
 
 class ConditionExposeStar extends ConditionExposeBase {
     apply(resultItem: ResultItem, focusedObject: FocusedObject, navigation: PanelNavigation): ResultItem {
@@ -17,13 +18,17 @@ class ConditionExposeStar extends ConditionExposeBase {
         if (focusedObject instanceof Star) {
             resultItem.addField("coordinate", this.renderStarCoordinate(focusedObject));
             resultItem.addField("name", this.renderStarName(focusedObject));
-            resultItem.addField("planets", this.navigateToPlanetsList(navigation, focusedObject));
+            resultItem.addField("planets", this.renderCoordinateChart(navigation, focusedObject));
         }
 
         return resultItem;
     }
 
-    private navigateToPlanetsList(navigation: PanelNavigation, star: Star) {
+    private renderCoordinateChart(navigation: PanelNavigation, star: Star) {
+        if (star.getPlanets().length === 0) {
+            return 'No planets';
+        }
+
         return <LinkPanelDetail onClick={
             navigation.navigateOnClick(
                 new ConditionSet()
@@ -32,7 +37,7 @@ class ConditionExposeStar extends ConditionExposeBase {
                     .addExposer(new ConditionExposePlanet(navigation))
             )
         }>
-            {star.getPlanets().length}
+            <CoordinatesListBulletChart list={star.getPlanets()}/>
         </LinkPanelDetail>
     }
 }

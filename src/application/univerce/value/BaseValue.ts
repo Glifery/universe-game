@@ -1,4 +1,4 @@
-class BaseValueDefinition {
+class BaseValue {
     protected readonly value: number;
 
     constructor(value: number) {
@@ -10,4 +10,4 @@ class BaseValueDefinition {
     }
 }
 
-export default BaseValueDefinition;
+export default BaseValue;

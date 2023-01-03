@@ -1,7 +1,7 @@
 import BaseDefinition from "../definition/BaseDefinition";
-import BaseValueDefinition from "./BaseValueDefinition";
+import BaseValue from "./BaseValue";
 
-class ValueDefinition<T extends BaseDefinition> extends BaseValueDefinition{
+class ValueDefinition<T extends BaseDefinition> extends BaseValue{
     private readonly definition: T;
     private readonly minValue?: number;
     private readonly maxValue?: number;
@@ -23,6 +23,14 @@ class ValueDefinition<T extends BaseDefinition> extends BaseValueDefinition{
 
     getMaxValue(): number|null {
         return this.maxValue ?? null;
+    }
+
+    getValueNormalized(): number {
+        if (this.minValue == null || this.maxValue == null) {
+            return 0.5;
+        }
+
+        return (this.value - this.minValue) / (this.maxValue - this.minValue);
     }
 }
 

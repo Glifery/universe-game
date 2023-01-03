@@ -1,7 +1,6 @@
 import BaseUniverseObject from "../BaseUniverseObject";
 import Coordinate from "../../position/Coordinate";
 import Planet from "./Planet";
-import _StarMassValue from "../../../application/univerce/value/_StarMassValue";
 import ValueDefinition from "../../../application/univerce/value/ValueDefinition";
 import MassPointsDefinition from "../../../application/univerce/definition/MassPointsDefinition";
 import SizePointsDefinition from "../../../application/univerce/definition/SizePointsDefinition";
