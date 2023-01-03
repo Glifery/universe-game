@@ -2,16 +2,16 @@ import ConditionExposeInterface from "../ConditionExposeInterface";
 import FocusedObject from "../../../../ui/type/FocusedObject";
 import ResultItem from "../ResultItem";
 import Sentinel from "../../../../domain/universe/object/Sentinel";
-import CoordinateSentinel from "../../../../ui/widget/CoordinateSentinel";
+import CoordinateSentinel from "../../../../ui/widget/coordinate/CoordinateSentinel";
 import PanelNavigation from "../../../../ui/type/PanelNavigation";
 import ConditionObject from "../ConditionObject";
 import LinkPanelDetail from "../../../../ui/elements/LinkPanelDetail";
 import React, {ReactNode} from "react";
 import {Typography} from "@mui/material";
 import Star from "../../../../domain/universe/object/Star";
-import CoordinateStar from "../../../../ui/widget/CoordinateStar";
+import CoordinateStar from "../../../../ui/widget/coordinate/CoordinateStar";
 import Planet from "../../../../domain/universe/object/Planet";
-import CoordinatePlanet from "../../../../ui/widget/CoordinatePlanet";
+import CoordinatePlanet from "../../../../ui/widget/coordinate/CoordinatePlanet";
 
 class ConditionExposeBase implements ConditionExposeInterface {
     protected readonly navigation: PanelNavigation;

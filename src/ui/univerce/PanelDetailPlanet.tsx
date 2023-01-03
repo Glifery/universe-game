@@ -4,7 +4,7 @@ import LinkPanelDetail from "../elements/LinkPanelDetail";
 import DescriptionBlock from "../widget/DescriptionBlock";
 import DescriptionKeyValue from "../widget/DescriptionKeyValue";
 import Planet from "../../domain/universe/object/Planet";
-import CoordinatePlanet from "../widget/CoordinatePlanet";
+import CoordinatePlanet from "../widget/coordinate/CoordinatePlanet";
 import ConditionSourceSentinel from "../../application/univerce/condition/source/ConditionSourceSentinel";
 import ConditionExposeSentinel from "../../application/univerce/condition/expose/ConditionExposeSentinel";
 import ConditionSet from "../../application/univerce/condition/ConditionSet";

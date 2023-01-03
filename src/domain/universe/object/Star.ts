@@ -5,6 +5,7 @@ import ValueDefinition from "../../../application/univerce/value/ValueDefinition
 import MassPointsDefinition from "../../../application/univerce/definition/MassPointsDefinition";
 import SizePointsDefinition from "../../../application/univerce/definition/SizePointsDefinition";
 import ShiningPointsDefinition from "../../../application/univerce/definition/ShiningPointsDefinition";
+import ResourceSet from "../../../application/univerce/resource/ResourceSet";
 
 class Star extends BaseUniverseObject {
     private planets: Planet[];
@@ -12,6 +13,7 @@ class Star extends BaseUniverseObject {
     private mass: ValueDefinition<MassPointsDefinition>;
     private size: ValueDefinition<SizePointsDefinition>;
     private shining: ValueDefinition<ShiningPointsDefinition>;
+    private resourceSet: ResourceSet;
 
     constructor(
         id: number,
@@ -19,7 +21,8 @@ class Star extends BaseUniverseObject {
         position: Coordinate,
         mass: ValueDefinition<MassPointsDefinition>,
         size: ValueDefinition<SizePointsDefinition>,
-        shining: ValueDefinition<ShiningPointsDefinition>
+        shining: ValueDefinition<ShiningPointsDefinition>,
+        resourceSet: ResourceSet
     ) {
         super(id, name, position);
         this.planets = [];
@@ -27,6 +30,7 @@ class Star extends BaseUniverseObject {
         this.mass = mass;
         this.size = size;
         this.shining = shining;
+        this.resourceSet = resourceSet;
     }
 
     getMass(): ValueDefinition<MassPointsDefinition> {
@@ -39,6 +43,10 @@ class Star extends BaseUniverseObject {
 
     getShining(): ValueDefinition<ShiningPointsDefinition> {
         return this.shining;
+    }
+
+    getResourceSet(): ResourceSet {
+        return this.resourceSet;
     }
 
     getPlanets(): Planet[] {

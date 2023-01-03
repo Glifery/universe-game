@@ -1,8 +1,8 @@
 import React, {FC} from "react";
 import {Typography} from "@mui/material";
 import CoordinateItem from "./CoordinateItem";
-import Sentinel from "../../domain/universe/object/Sentinel";
-import PanelNavigation from "../type/PanelNavigation";
+import Sentinel from "../../../domain/universe/object/Sentinel";
+import PanelNavigation from "../../type/PanelNavigation";
 
 type Props = {
     navigation: PanelNavigation;

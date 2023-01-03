@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {ChartBullet} from "@patternfly/react-charts";
-import BaseUniverseObject from "../../domain/universe/BaseUniverseObject";
+import BaseUniverseObject from "../../../domain/universe/BaseUniverseObject";
 
 type Props = {
     list: BaseUniverseObject[];

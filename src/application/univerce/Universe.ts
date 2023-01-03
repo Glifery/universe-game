@@ -10,6 +10,10 @@ import RandomValue from "../util/random/RandomValue";
 import MassPointsDefinition from "./definition/MassPointsDefinition";
 import SizePointsDefinition from "./definition/SizePointsDefinition";
 import ShiningPointsDefinition from "./definition/ShiningPointsDefinition";
+import ResourceSet, {ResourceType} from "./resource/ResourceSet";
+import Resource from "./resource/Resource";
+import BaseValue from "./value/BaseValue";
+import Util from "../util/Util";
 
 class Universe {
     private readonly stars: Star[];
@@ -45,14 +49,28 @@ class Universe {
         });
     }
 
+    createStarResource(type: ResourceType): Resource|null {
+        if (RandomValue.createDefault().next() < 0.5) {
+            return null;
+        }
+
+        return new Resource(type, new BaseValue(RandomValue.createDefault().next()));
+    }
+
     createStar(coordinate: Coordinate): Star {
-        let star = new Star(
+        const star = new Star(
             GlobalIdProvider.getNextId(),
             this.randomNameGenerator.getRandom(),
             coordinate,
             RandomValue.createInterval(20000000, 1000000000).nextValueDefinition<MassPointsDefinition>(new MassPointsDefinition()),
             RandomValue.createInterval(20000000, 1000000000).nextValueDefinition<SizePointsDefinition>(new SizePointsDefinition()),
             RandomValue.createDistributedSoftInterval(0.1, 10, 1).nextValueDefinition<ShiningPointsDefinition>(new ShiningPointsDefinition()),
+            new ResourceSet(
+                Object.values(ResourceType)
+                    .filter(Util.filterString)
+                    .map(type => this.createStarResource(ResourceType[(type as keyof typeof ResourceType)]))
+                    .filter(Util.filterNotNull) as Resource[]
+            ),
         );
 
         return star;

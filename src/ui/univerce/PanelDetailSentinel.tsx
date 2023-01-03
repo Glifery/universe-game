@@ -2,7 +2,7 @@ import React, {FC} from "react";
 import Sentinel from "../../domain/universe/object/Sentinel";
 import {Button, Card, CardActions, CardContent, Typography} from "@mui/material";
 import LinkPanelDetail from "../elements/LinkPanelDetail";
-import CoordinateSentinel from "../widget/CoordinateSentinel";
+import CoordinateSentinel from "../widget/coordinate/CoordinateSentinel";
 import DescriptionBlock from "../widget/DescriptionBlock";
 import DescriptionKeyValue from "../widget/DescriptionKeyValue";
 import PanelNavigation from "../type/PanelNavigation";

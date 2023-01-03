@@ -1,8 +1,8 @@
 import React, {FC} from "react";
 import {Typography} from "@mui/material";
 import CoordinateItem from "./CoordinateItem";
-import Planet from "../../domain/universe/object/Planet";
-import PanelNavigation from "../type/PanelNavigation";
+import Planet from "../../../domain/universe/object/Planet";
+import PanelNavigation from "../../type/PanelNavigation";
 
 type Props = {
     navigation: PanelNavigation;

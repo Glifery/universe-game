@@ -9,7 +9,7 @@ import Star from "../../../../domain/universe/object/Star";
 import ConditionSourcePlanet from "../source/ConditionSourcePlanet";
 import ConditionFilterByStar from "../filter/ConditionFilterByStar";
 import ConditionExposePlanet from "./ConditionExposePlanet";
-import CoordinatesListBulletChart from "../../../../ui/widget/CoordinatesListBulletChart";
+import CoordinatesListBulletChart from "../../../../ui/widget/coordinate/CoordinatesListBulletChart";
 
 class ConditionExposeStar extends ConditionExposeBase {
     apply(resultItem: ResultItem, focusedObject: FocusedObject, navigation: PanelNavigation): ResultItem {

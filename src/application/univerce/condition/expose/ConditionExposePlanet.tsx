@@ -9,7 +9,7 @@ import ConditionSourceSentinel from "../source/ConditionSourceSentinel";
 import ConditionFilterByPlanet from "../filter/ConditionFilterByPlanet";
 import PanelNavigation from "../../../../ui/type/PanelNavigation";
 import ConditionExposeSentinel from "./ConditionExposeSentinel";
-import CoordinatesListBulletChart from "../../../../ui/widget/CoordinatesListBulletChart";
+import CoordinatesListBulletChart from "../../../../ui/widget/coordinate/CoordinatesListBulletChart";
 
 class ConditionExposePlanet extends ConditionExposeBase {
     apply(resultItem: ResultItem, focusedObject: FocusedObject, navigation: PanelNavigation): ResultItem {

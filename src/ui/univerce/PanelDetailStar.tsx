@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import {Button, Card, CardActions, CardContent, Typography} from "@mui/material";
 import Star from "../../domain/universe/object/Star";
-import CoordinateStar from "../widget/CoordinateStar";
+import CoordinateStar from "../widget/coordinate/CoordinateStar";
+import ResourceSetChart from "../widget/ResourceSetChart";
 import PanelNavigation from "../type/PanelNavigation";
 import ConditionSet from "../../application/univerce/condition/ConditionSet";
 import DescriptionBlock from "../widget/DescriptionBlock";
@@ -49,8 +50,14 @@ class PanelDetailStar extends Component<Props> {
                                 "no planets"
                             }
                         </DescriptionKeyValue>
+                        <DescriptionKeyValue descriptionKey={"Resources:"}>
+                            <ResourceSetChart resourceSet={star.getResourceSet()} />
+                        </DescriptionKeyValue>
                     </DescriptionBlock>
                 </Typography>
+                {/*<Typography component="div">*/}
+                {/*    <ResourceSetChart resourceSet={star.getResourceSet()} />*/}
+                {/*</Typography>*/}
             </CardContent>
             <CardActions>
                 <Button size="small">Learn More</Button>
